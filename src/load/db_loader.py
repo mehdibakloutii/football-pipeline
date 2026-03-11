@@ -1,17 +1,14 @@
 import psycopg2
 import os
-from dotenv import load_dotenv
-
-load_dotenv()
 
 def get_connection():
     """Crée une connexion à PostgreSQL"""
     conn = psycopg2.connect(
-        host=os.getenv("DB_HOST"),
-        port=os.getenv("DB_PORT"),
-        dbname=os.getenv("DB_NAME"),
-        user=os.getenv("DB_USER"),
-        password=os.getenv("DB_PASSWORD")
+        host=os.environ.get("DB_HOST", "172.24.112.1"),
+        port=5432,
+        dbname="football_db",
+        user="postgres",
+        password="Football2024!"
     )
     return conn
 
